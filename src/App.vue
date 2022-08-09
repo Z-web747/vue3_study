@@ -1,14 +1,14 @@
 <template>
-  <my-parent/>
+  <home/>
 </template>
 
 <script>
-import myParent from './components/Parent.vue'
+import home from './components/home.vue'
 
 export default {
   name: 'App',
   components: {
-    myParent
+    home
   }
 }
 </script>

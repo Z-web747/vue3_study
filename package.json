@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
@@ -12,6 +12,9 @@
     "axios": "^0.27.2",
     "core-js": "^3.8.3",
     "mitt": "^3.0.0",
+    "node-sass": "^7.0.1",
+    "pinia": "^2.0.14",
+    "sass-loader": "^13.0.2",
     "vue": "^3.2.13"
   },
   "devDependencies": {

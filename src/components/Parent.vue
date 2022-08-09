@@ -38,7 +38,7 @@
     <p ref="quest" v-if="question">{{question}}</p>
     <button @click="person.hobby.push(person.hobby.length + '新增')">给hobby新增数据</button>
     <p v-for="item in person.hobby" :key="item">{{item}}</p> -->
-    <hr>
+    <!-- <hr>
     ref：<input type="text" ref="input">
     <p v-for="item in list" :key="item" ref="itemRefs">{{item}}</p>
     
@@ -63,32 +63,38 @@
     <input type="text" v-model="message">
     <provide-com/>
     <hr>
-    <p>组合式函数</p>
+    <p>组合式函数</p> -->
     <!-- 当前鼠标位置{{x}},{{y}} -->
     <hr>
-    <p>自定义指令</p>
+    <!-- <p>自定义指令</p> -->
 
-    <div class="directive" v-myDirective:[list].foo.bar="'hello'">我是自定义指令</div>
+    <!-- <div class="directive" v-myDirective:[list].foo.bar="'hello'">我是自定义指令</div> -->
+    <hr>
+    <p>响应式</p>
+    <p>普通对象{{numberObj.count}}</p>
+    <p>proxy:{{proxy}}</p>
+    <p>obj: {{obj.count}}</p>
+    <button @click="increment">{{count}}</button>
   </div>
 </template>
 <script>
 import {  defineComponent, onMounted, reactive, ref, toRefs, watch, provide} from "vue";
 // import {usemouse} from './mouse'
-import Child from "./Child.vue"
-import Model from './Model.vue'
-import userName from './userName.vue'
-import MyComponent from './MyComponent.vue'
-import myButton from './myButton.vue'
-import provideCom from './provide.vue'
+// import Child from "./Child.vue"
+// import Model from './Model.vue'
+// import userName from './userName.vue'
+// import MyComponent from './MyComponent.vue'
+// import myButton from './myButton.vue'
+// import provideCom from './provide.vue'
 export default defineComponent({
   name: 'myParent',
   components: {
-    Child,
-    Model,
-    userName,
-    MyComponent,
-    myButton,
-    provideCom
+    // Child,
+    // Model,
+    // userName,
+    // MyComponent,
+    // myButton,
+    // provideCom
 },
 directives: {
   myDirective(...arg){
@@ -128,8 +134,14 @@ directives: {
       modalVALUE: '',
       firstName: '',
       lastName: '',
-      MyComponentValue: ''
+      MyComponentValue: '',
+      count: 0
     })
+    const numberObj = {
+      count: 0
+    }
+    let proxy = reactive(0)
+    
     // const { x,y } = usemouse()
     watch(()=>state.question,()=>{
       console.dir(quest.value)
@@ -143,6 +155,16 @@ directives: {
         hobby: ['唱','跳', 'rap']
       })
       
+      let obj = reactive({
+        count: 0
+      })
+      obj = reactive({count:100})
+      const increment = () => {
+      state.count++
+      numberObj.count++
+      obj.count++
+      proxy++
+    }
       // watch([()=>x.value, y],([n_x,o_x], [n_y,o_y])=>{
       //   console.log([n_x,o_x],[n_y,o_y]);
       // })
@@ -161,9 +183,9 @@ directives: {
     const message = ref('')
     provide('title',message)
     onMounted(() => {
-      input.value.focus()
+      // input.value.focus()
       console.log('引用', itemRefs.value);
-      console.log('子组件rfe', childRef.value.msg);
+      // console.log('子组件rfe', childRef.value.msg);
     })
     const handleClick = (q,e) => {
       console.log(q,e)
@@ -179,8 +201,11 @@ directives: {
       console.log(e.target.innerText)
     }
     
+
     return {
       ...toRefs(state),
+      obj,
+      proxy,
       childRef,
       itemRefs,
       quest,
@@ -191,6 +216,8 @@ directives: {
       buttonClick,
       onModel,
       message,
+      increment,
+      numberObj
     }
   }
 })
