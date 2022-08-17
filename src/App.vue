@@ -1,14 +1,14 @@
 <template>
-  <home/>
+  <PullRefreshome/>
 </template>
 
 <script>
-import home from './components/home.vue'
+import PullRefreshome from './PullRefresh.vue'
 
 export default {
   name: 'App',
   components: {
-    home
+    PullRefreshome
   }
 }
 </script>
