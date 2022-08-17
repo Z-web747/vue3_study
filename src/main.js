@@ -23,6 +23,7 @@ app.directive('animate', {
 console.log('第一次提交')
 console.log('dev分支代码')
 console.log('dev分支代码第二次提交')
+console.log('dev分支代码第三次提交')
 app.use(flag)
 app.provide('flag','flag')
 app.mount('#app')
