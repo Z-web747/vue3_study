@@ -20,7 +20,7 @@ app.directive('animate', {
       })
   }
 })
-console.log('第一次提交')
+console.log('第一，A次提交')
 app.use(flag)
 app.provide('flag','flag')
 app.mount('#app')
